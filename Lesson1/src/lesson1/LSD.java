@@ -1,19 +1,15 @@
 package lesson1;
 
-import javafx.util.Callback;
-
 public class LSD {
 
     public static void main(String[] args) {
-        SortChecker.Result result = SortChecker.MakeIteration(new Callback<int[], Void>() {
-            public Void call(int[] data2) {
-                LSDSort(data2);
-                return null;
-            }
+        SortChecker.Result result = SortChecker.MakeIteration(data2 -> {
+            LSDSort(data2);
+            return null;
         });
-        System.out.println("Elapsed standard = " + result.getTime1());
+        System.out.println("Elapsed standard = " + result.getTimeStandard());
 
-        System.out.println("Elapsed checked = " + result.getTime2());
+        System.out.println("Elapsed checked = " + result.getTimeExternal());
 
         System.out.println("Passed = " + result.isPassed());
     }
@@ -54,9 +50,7 @@ public class LSD {
                 aux[count[c]++] = data[i];
             }
 
-            for (int i = 0; i < n; i++){
-                data[i] = aux[i];
-            }
+            System.arraycopy(aux, 0, data, 0, n);
         }
     }
 }

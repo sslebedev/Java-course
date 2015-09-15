@@ -32,22 +32,27 @@ public class SortChecker {
     }
 
     public static class Result {
-        long time1;
-        long time2;
+        long timeStandard;
+        long timeExternal;
         boolean passed;
 
-        public Result(long time1, long time2, boolean passed) {
-            this.time1 = time1;
-            this.time2 = time2;
+        public Result() {
+            timeStandard = timeExternal = 0;
+            passed = true;
+        }
+
+        public Result(long timeStandard, long timeExternal, boolean passed) {
+            this.timeStandard = timeStandard;
+            this.timeExternal = timeExternal;
             this.passed = passed;
         }
 
-        public long getTime1() {
-            return time1;
+        public long getTimeStandard() {
+            return timeStandard;
         }
 
-        public long getTime2() {
-            return time2;
+        public long getTimeExternal() {
+            return timeExternal;
         }
 
         public boolean isPassed() {
@@ -59,8 +64,47 @@ public class SortChecker {
         }
 
         public void Append(Result nextResult) {
-            time1 += nextResult.time1;
-            time2 += nextResult.time2;
+            timeStandard += nextResult.timeStandard;
+            timeExternal += nextResult.timeExternal;
+            passed = passed && nextResult.passed;
+        }
+    }
+
+    public static class Result {
+        long timeStandard;
+        long timeExternal;
+        boolean passed;
+
+        public Result() {
+            timeStandard = timeExternal = 0;
+            passed = true;
+        }
+
+        public Result(long timeStandard, long timeExternal, boolean passed) {
+            this.timeStandard = timeStandard;
+            this.timeExternal = timeExternal;
+            this.passed = passed;
+        }
+
+        public long getTimeStandard() {
+            return timeStandard;
+        }
+
+        public long getTimeExternal() {
+            return timeExternal;
+        }
+
+        public boolean isPassed() {
+            return passed;
+        }
+
+        public long TicksPerSecond() {
+            return 10 ^ 9;
+        }
+
+        public void Append(Result nextResult) {
+            timeStandard += nextResult.timeStandard;
+            timeExternal += nextResult.timeExternal;
             passed = passed && nextResult.passed;
         }
     }
