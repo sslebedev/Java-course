@@ -1,36 +1,24 @@
 package lesson1;
 
-import java.util.Random;
+import javafx.util.Callback;
 
 public class LSD {
 
-    private static final int SIZE = 1000000;
-
-    private static Random random = new Random();
-
     public static void main(String[] args) {
-        int[] data = generate();
+        SortChecker.Result result = SortChecker.MakeIteration(new Callback<int[], Void>() {
+            public Void call(int[] data2) {
+                LSDSort(data2);
+                return null;
+            }
+        });
+        System.out.println("Elapsed standard = " + result.getTime1());
 
-        int [] data2 = data.clone();
+        System.out.println("Elapsed checked = " + result.getTime2());
 
-        long start = System.nanoTime();
-
-        java.util.Arrays.sort(data);
-
-        long stop = System.nanoTime();
-
-        System.out.println("Elapsed = " + (stop - start));
-
-        start = System.nanoTime();
-        LSDSort(data2);
-        stop = System.nanoTime();
-
-        System.out.println("Elapsed = " + (stop - start));
-
-        System.out.println("Passed = " + java.util.Arrays.equals(data, data2));
+        System.out.println("Passed = " + result.isPassed());
     }
 
-    private static void LSDSort(int[] data) {
+    public static void LSDSort(int[] data) {
         int w = 4;
         int BITS_PER_BYTE = 8;
         int r = 1 << 8;
@@ -70,15 +58,5 @@ public class LSD {
                 data[i] = aux[i];
             }
         }
-    }
-
-    private static int[] generate() {
-        int[] data = new int[SIZE];
-
-        for (int k = 0; k < data.length; k++) {
-            data[k] = random.nextInt(SIZE);
-        }
-
-        return data;
     }
 }
