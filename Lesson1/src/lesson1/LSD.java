@@ -3,15 +3,28 @@ package lesson1;
 public class LSD {
 
     public static void main(String[] args) {
-        SortChecker.Result result = SortChecker.MakeIteration(data2 -> {
-            LSDSort(data2);
-            return null;
-        });
-        System.out.println("Elapsed standard = " + result.getTimeStandard());
+        SortChecker.Result total = new SortChecker.Result();
 
-        System.out.println("Elapsed checked = " + result.getTimeExternal());
+        int c = 200;
 
-        System.out.println("Passed = " + result.isPassed());
+        for (int i = 0; i < c; i++) {
+            SortChecker.Result iteration = SortChecker.MakeIteration(data2 -> {
+                LSDSort(data2);
+                return null;
+            });
+
+            total.Append(iteration);
+        }
+
+        double av1 = (double) total.getTimeStandard() / SortChecker.Result.TicksPerSecond() / c;
+        System.out.println("Elapsed standard = " + av1);
+
+        double av2 = (double) total.getTimeExternal() / SortChecker.Result.TicksPerSecond() / c;
+        System.out.println("Elapsed checked = " + av2);
+
+        System.out.println("Ratio = " + av1 / av2);
+
+        System.out.println("Passed = " + total.isPassed());
     }
 
     public static void LSDSort(int[] data) {

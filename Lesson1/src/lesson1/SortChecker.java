@@ -47,6 +47,10 @@ public class SortChecker {
             this.passed = passed;
         }
 
+        public static long TicksPerSecond() {
+            return 1000000000;
+        }
+
         public long getTimeStandard() {
             return timeStandard;
         }
@@ -57,10 +61,6 @@ public class SortChecker {
 
         public boolean isPassed() {
             return passed;
-        }
-
-        public long TicksPerSecond() {
-            return 10 ^ 9;
         }
 
         public void Append(Result nextResult) {
@@ -86,6 +86,10 @@ public class SortChecker {
             this.passed = passed;
         }
 
+        public static long TicksPerSecond() {
+            return 1000000000;
+        }
+
         public long getTimeStandard() {
             return timeStandard;
         }
@@ -96,10 +100,6 @@ public class SortChecker {
 
         public boolean isPassed() {
             return passed;
-        }
-
-        public long TicksPerSecond() {
-            return 10 ^ 9;
         }
 
         public void Append(Result nextResult) {
