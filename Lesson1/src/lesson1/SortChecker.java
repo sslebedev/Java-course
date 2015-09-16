@@ -70,45 +70,6 @@ public class SortChecker {
         }
     }
 
-    public static class Result {
-        long timeStandard;
-        long timeExternal;
-        boolean passed;
-
-        public Result() {
-            timeStandard = timeExternal = 0;
-            passed = true;
-        }
-
-        public Result(long timeStandard, long timeExternal, boolean passed) {
-            this.timeStandard = timeStandard;
-            this.timeExternal = timeExternal;
-            this.passed = passed;
-        }
-
-        public static long TicksPerSecond() {
-            return 1000000000;
-        }
-
-        public long getTimeStandard() {
-            return timeStandard;
-        }
-
-        public long getTimeExternal() {
-            return timeExternal;
-        }
-
-        public boolean isPassed() {
-            return passed;
-        }
-
-        public void Append(Result nextResult) {
-            timeStandard += nextResult.timeStandard;
-            timeExternal += nextResult.timeExternal;
-            passed = passed && nextResult.passed;
-        }
-    }
-
     private static int[] generate() {
         int[] data = new int[SIZE];
 
