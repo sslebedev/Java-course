@@ -5,7 +5,7 @@ public class LSD {
     public static void main(String[] args) {
         SortChecker.Result total = new SortChecker.Result();
 
-        int c = 200;
+        int c = 300;
 
         for (int i = 0; i < c; i++) {
             SortChecker.Result iteration = SortChecker.MakeIteration(data2 -> {
