@@ -5,7 +5,7 @@ public class LSD {
     public static void main(String[] args) {
         SortChecker.Result total = new SortChecker.Result();
 
-        int c = 300;
+        int c = 400;
 
         for (int i = 0; i < c; i++) {
             SortChecker.Result iteration = SortChecker.MakeIteration(data2 -> {
@@ -35,6 +35,7 @@ public class LSD {
     private static int R = 1 << 8;
     private static int MASK = 0xFF;
     private static int[] counts = new int[R + 1];
+    private static int[] countsZero = new int[R + 1];
 
     public static void LSDSort(int[] data) {
         int n = data.length;
@@ -43,9 +44,7 @@ public class LSD {
         }
 
         for (int d = 0; d < W; d++) {
-            for (int i = 0; i < R + 1; i++) {
-                counts[i] = 0;
-            }
+            System.arraycopy(countsZero, 0, counts, 0, R + 1);
 
             for (int i = 0; i < n; i++) {
                 int c = (data[i] >> BITS_PER_BYTE * d) & MASK;
