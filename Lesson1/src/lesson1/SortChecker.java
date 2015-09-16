@@ -9,11 +9,9 @@ public class SortChecker {
 
     private static Random random = new Random();
 
-    private static int[] dataSample = generate();
-
     public static Result MakeIteration(Callback<int[], Void> sortToCompare) {
-        int[] data1 = dataSample.clone();
-        int[] data2 = dataSample.clone();
+        int[] data1 = generate();
+        int[] data2 = data1.clone();
 
         long start = System.nanoTime();
         java.util.Arrays.sort(data1);
