@@ -27,6 +27,8 @@ public class LSD {
         System.out.println("Passed = " + total.isPassed());
     }
 
+    private static int[] aux = new int[10];
+
     public static void LSDSort(int[] data) {
         int w = 4;
         int BITS_PER_BYTE = 8;
@@ -34,7 +36,9 @@ public class LSD {
         int mask = 0xFF;
 
         int n = data.length;
-        int[] aux = new int[n];
+        if (n != aux.length) {
+            aux = new int[n];
+        }
 
         for (int d = 0; d < w; d++) {
             int[] count = new int[r + 1];
