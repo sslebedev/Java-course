@@ -29,42 +29,47 @@ public class LSD {
 
     private static int[] aux = new int[10];
 
-    public static void LSDSort(int[] data) {
-        int w = 4;
-        int BITS_PER_BYTE = 8;
-        int r = 1 << 8;
-        int mask = 0xFF;
+    // there is some constants
+    private static int W = 4;
+    private static int BITS_PER_BYTE = 8;
+    private static int R = 1 << 8;
+    private static int MASK = 0xFF;
+    private static int[] counts = new int[R + 1];
 
+    public static void LSDSort(int[] data) {
         int n = data.length;
         if (n != aux.length) {
             aux = new int[n];
         }
 
-        for (int d = 0; d < w; d++) {
-            int[] count = new int[r + 1];
-            for (int i = 0; i < n; i++) {
-                int c = (data[i] >> BITS_PER_BYTE * d) & mask;
-                count[c + 1]++;
-            }
-
-            for (int j = 0; j < r; j++) {
-                count[j + 1] += count[j];
-            }
-
-            if (d == w - 1) {
-                int shift1 = count[r] - count[r / 2];
-                int shift2 = count[r / 2];
-                for (int j = 0; j < r / 2; j++) {
-                    count[j] += shift1;
-                }
-                for (int j = r / 2; j < r; j++) {
-                    count[j] -= shift2;
-                }
+        for (int d = 0; d < W; d++) {
+            for (int i = 0; i < R + 1; i++) {
+                counts[i] = 0;
             }
 
             for (int i = 0; i < n; i++) {
-                int c = (data[i] >> BITS_PER_BYTE * d) & mask;
-                aux[count[c]++] = data[i];
+                int c = (data[i] >> BITS_PER_BYTE * d) & MASK;
+                counts[c + 1]++;
+            }
+
+            for (int j = 0; j < R; j++) {
+                counts[j + 1] += counts[j];
+            }
+
+            if (d == W - 1) {
+                int shift1 = counts[R] - counts[R / 2];
+                int shift2 = counts[R / 2];
+                for (int j = 0; j < R / 2; j++) {
+                    counts[j] += shift1;
+                }
+                for (int j = R / 2; j < R; j++) {
+                    counts[j] -= shift2;
+                }
+            }
+
+            for (int i = 0; i < n; i++) {
+                int c = (data[i] >> BITS_PER_BYTE * d) & MASK;
+                aux[counts[c]++] = data[i];
             }
 
             System.arraycopy(aux, 0, data, 0, n);
