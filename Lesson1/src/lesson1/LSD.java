@@ -8,8 +8,8 @@ public class LSD {
         int c = 400;
 
         for (int i = 0; i < c; i++) {
-            SortChecker.Result iteration = SortChecker.MakeIteration(data2 -> {
-                LSDSort(data2);
+            SortChecker.Result iteration = SortChecker.MakeIteration(data -> {
+                LSDSort(data);
                 return null;
             });
 
