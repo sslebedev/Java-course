@@ -44,15 +44,14 @@ public final class SortChecker {
         private long timeExternal;
         private boolean passed;
 
-        public Result() {
-            timeStandard = timeExternal = 0;
-            passed = true;
-        }
-
         public Result(long timeStandard, long timeExternal, boolean passed) {
             this.timeStandard = timeStandard;
             this.timeExternal = timeExternal;
             this.passed = passed;
+        }
+
+        public Result() {
+            this(0, 0, true);
         }
 
         public static final long TicksPerSecond = 1000000000;
