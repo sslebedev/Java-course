@@ -30,12 +30,12 @@ public class LSD {
     private static int[] aux = new int[10];
 
     // there is some constants
-    private static int W = 4;
-    private static int BITS_PER_BYTE = 8;
-    private static int R = 1 << 8;
-    private static int MASK = 0xFF;
-    private static int[] counts = new int[R + 1];
-    private static int[] countsZero = new int[R + 1];
+    private static final int W = 4;
+    private static final int BITS_PER_BYTE = 8;
+    private static final int R = 1 << 8;
+    private static final int MASK = 0xFF;
+    private static final int[] counts = new int[R + 1];
+    private static final int[] countsZero = new int[R + 1];
 
     public static void LSDSort(int[] data) {
         int n = data.length;
