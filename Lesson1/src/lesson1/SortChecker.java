@@ -4,7 +4,7 @@ import javafx.util.Callback;
 
 import java.util.Random;
 
-public class SortChecker {
+public final class SortChecker {
     private static final int SIZE = 1000000;
 
     private static Random random = new Random();
@@ -27,6 +27,16 @@ public class SortChecker {
         boolean isPassed = java.util.Arrays.equals(data1, data2);
 
         return new Result(nanoTime1, nanoTime2, isPassed);
+    }
+
+    private static int[] generate() {
+        int[] data = new int[SIZE];
+
+        for (int k = 0; k < data.length; k++) {
+            data[k] = random.nextInt(SIZE);
+        }
+
+        return data;
     }
 
     public static class Result {
@@ -64,15 +74,5 @@ public class SortChecker {
             timeExternal += nextResult.timeExternal;
             passed = passed && nextResult.passed;
         }
-    }
-
-    private static int[] generate() {
-        int[] data = new int[SIZE];
-
-        for (int k = 0; k < data.length; k++) {
-            data[k] = random.nextInt(SIZE);
-        }
-
-        return data;
     }
 }

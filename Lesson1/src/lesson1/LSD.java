@@ -1,11 +1,11 @@
 package lesson1;
 
-public class LSD {
+public final class LSD {
 
     public static void main(String[] args) {
         SortChecker.Result total = new SortChecker.Result();
 
-        int c = 400;
+        final int c = 400;
 
         for (int i = 0; i < c; i++) {
             SortChecker.Result iteration = SortChecker.MakeIteration(data -> {
