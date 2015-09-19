@@ -30,9 +30,9 @@ public class SortChecker {
     }
 
     public static class Result {
-        long timeStandard;
-        long timeExternal;
-        boolean passed;
+        private long timeStandard;
+        private long timeExternal;
+        private boolean passed;
 
         public Result() {
             timeStandard = timeExternal = 0;
@@ -45,9 +45,7 @@ public class SortChecker {
             this.passed = passed;
         }
 
-        public static long TicksPerSecond() {
-            return 1000000000;
-        }
+        public static final long TicksPerSecond = 1000000000;
 
         public long getTimeStandard() {
             return timeStandard;

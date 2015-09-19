@@ -16,10 +16,10 @@ public class LSD {
             total.Append(iteration);
         }
 
-        double av1 = (double) total.getTimeStandard() / SortChecker.Result.TicksPerSecond() / c;
+        double av1 = (double) total.getTimeStandard() / SortChecker.Result.TicksPerSecond / c;
         System.out.println("Elapsed standard = " + av1);
 
-        double av2 = (double) total.getTimeExternal() / SortChecker.Result.TicksPerSecond() / c;
+        double av2 = (double) total.getTimeExternal() / SortChecker.Result.TicksPerSecond / c;
         System.out.println("Elapsed checked = " + av2);
 
         System.out.println("Ratio = " + av1 / av2);
