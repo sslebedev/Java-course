@@ -43,7 +43,7 @@ public final class LSD {
             aux = new int[n];
         }
 
-        for (int d = 0; d < W; d++) {
+        for (int d = 0; d < 3; d++) { // optimize for max of 1kk
             System.arraycopy(countsZero, 0, counts, 0, R + 1);
 
             for (int i = 0; i < n; i++) {
@@ -55,16 +55,7 @@ public final class LSD {
                 counts[j + 1] += counts[j];
             }
 
-            if (d == W - 1) {
-                int shift1 = counts[R] - counts[R / 2];
-                int shift2 = counts[R / 2];
-                for (int j = 0; j < R / 2; j++) {
-                    counts[j] += shift1;
-                }
-                for (int j = R / 2; j < R; j++) {
-                    counts[j] -= shift2;
-                }
-            }
+            // Numbers are non-negative
 
             for (int i = 0; i < n; i++) {
                 int c = (data[i] >> BITS_PER_BYTE * d) & MASK;
