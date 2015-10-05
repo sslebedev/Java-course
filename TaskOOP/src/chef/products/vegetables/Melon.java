@@ -8,6 +8,10 @@ import chef.products.Vegetable;
  * For example: watermelon
  */
 public class Melon extends Vegetable {
+    /**
+     * @param name name
+     * @param calories calories in 1 kg
+     */
     public Melon(String name, float calories) {
         super(name, calories);
     }

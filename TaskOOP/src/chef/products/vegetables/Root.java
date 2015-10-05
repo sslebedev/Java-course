@@ -8,6 +8,10 @@ import chef.products.Vegetable;
  * For example: parsley
  */
 public class Root extends Vegetable{
+    /**
+     * @param name name
+     * @param calories calories in 1 kg
+     */
     public Root(String name, float calories) {
         super(name, calories);
     }
