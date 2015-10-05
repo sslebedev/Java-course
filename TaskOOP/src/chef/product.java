@@ -2,8 +2,11 @@ package chef;
 
 /**
  * Created by Сергей on 05.10.2015.
+ *
+ * Anything to be food is product:
+ *   something named and energetically valuable
  */
-public class Product {
+public abstract class Product {
     private String name;
     private float calories;
 
@@ -12,9 +15,7 @@ public class Product {
         this.calories = calories;
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
     public float getCalories() {
         return calories;
