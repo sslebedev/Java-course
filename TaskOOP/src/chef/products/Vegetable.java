@@ -17,4 +17,9 @@ public abstract class Vegetable extends Product {
     public Vegetable(String name, float calories) {
         super(name, calories);
     }
+
+    @Override
+    public Measure getMeasure() {
+        return Measure.KG;
+    }
 }
