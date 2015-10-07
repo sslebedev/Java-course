@@ -5,6 +5,8 @@ import chef.products.Measure;
 
 /**
  * Created by Сергей on 06.10.2015.
+ *
+ * For example: olive oil
  */
 public class Oil extends Product {
     /**

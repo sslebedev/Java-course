@@ -13,12 +13,17 @@ public abstract class Product {
     private float calories;
 
     /**
-     * @param name name
-     * @param calories calories in 1 measure
+     * @param name
+     * @param calories
      */
     public Product(String name, float calories) {
         this.name = name;
         this.calories = calories;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 
     /**
