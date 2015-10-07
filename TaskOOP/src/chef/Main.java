@@ -9,10 +9,7 @@ package chef;
 import chef.products.liquids.Oil;
 import chef.products.vegetables.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Main {
 
@@ -45,6 +42,17 @@ public class Main {
         System.out.println(dish);
         System.out.println("Making...");
         dish.Make();
-        System.out.println("Salade colries: " + dish.getCalories());
+
+        System.out.println("Salad calories: " + dish.getCalories());
+
+        System.out.println("Arrange combination: only vegetables by (product) calories: ");
+        List<Product> vegetables1 = Helpers.getCalSortedVegetables(dish);
+        System.out.println(vegetables1);
+
+        System.out.println("Select in combination: only vegetables with calories between 0.5 and 1 kcal : ");
+
+        List<Product> vegetables2 = Helpers.getProductsInCalRange(vegetables1, 500, 1000);
+        System.out.println(vegetables2);
     }
+
 }
