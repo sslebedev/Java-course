@@ -5,7 +5,7 @@ import chef.products.Vegetable;
 /**
  * Created by Сергей on 05.10.2015.
  * <p>
- * For example: watermelon
+ * For example: squash
  */
 public class Melon extends Vegetable {
     /**

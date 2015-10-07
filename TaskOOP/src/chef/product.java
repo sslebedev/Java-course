@@ -1,5 +1,7 @@
 package chef;
 
+import chef.products.Measure;
+
 /**
  * Created by Сергей on 05.10.2015.
  *
@@ -10,13 +12,18 @@ public abstract class Product {
     private String name;
     private float calories;
 
-    /**   7
-     * @param name name
-     * @param calories calories in 1 kg
+    /**
+     * @param name
+     * @param calories
      */
     public Product(String name, float calories) {
         this.name = name;
         this.calories = calories;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 
     /**
@@ -25,9 +32,14 @@ public abstract class Product {
     public String getName() { return name; }
 
     /**
-     * @return Calories in 1 kg
+     * @return Calories in 1 measure
      */
     public float getCalories() {
         return calories;
     }
+
+    /**
+     * @return Measure type
+     */
+    public abstract Measure getMeasure();
 }
