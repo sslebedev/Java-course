@@ -18,14 +18,20 @@ public class Dish {
         this.composition = composition;
     }
 
+    /**
+     * Makes this!
+     */
+    public void Make() {
+        System.out.println("Done!");
+    }
+
     @Override
     public String toString() {
         StringBuilder strBuilder = new StringBuilder();
-        strBuilder.append(name + ": ");
+        strBuilder.append(name).append(": ");
         for (int i = 0, s = composition.size(); i < s; i++) {
             Ingredient ingredient = composition.get(i);
-            strBuilder.append(ingredient.getValue() + " " + ingredient.getProduct().getMeasure().toString()
-                    + " of " + ingredient.getProduct().getName());
+            strBuilder.append(ingredient.getValue()).append(" ").append(ingredient.getProduct().getMeasure().toString()).append(" of ").append(ingredient.getProduct().getName());
             strBuilder.append(i < s - 1 ? ";" : ".");
         }
 

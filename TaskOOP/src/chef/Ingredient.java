@@ -3,7 +3,7 @@ package chef;
 /**
  * Created by Сергей on 06.10.2015.
  */
-public abstract class Ingredient {
+public class Ingredient {
     private Product product;
     private float value;
 

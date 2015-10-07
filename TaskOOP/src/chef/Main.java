@@ -12,6 +12,7 @@ import chef.products.vegetables.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class Main {
 
@@ -33,8 +34,16 @@ public class Main {
         };
         System.out.println(Arrays.deepToString(products));
 
-        List<Ingredient> combination = new ArrayList<Ingredient>();
+        System.out.println("Forming combination...");
+        List<Ingredient> combination = new ArrayList<>();
+        Random random = new Random(0);
+        for (Product p : products) {
+            combination.add(new Ingredient(p, random.nextFloat()));
+        }
         String dishName = "Salad 'All In'";
-
+        Dish dish = new Dish(dishName, combination);
+        System.out.println(dish);
+        System.out.println("Making...");
+        dish.Make();
     }
 }
