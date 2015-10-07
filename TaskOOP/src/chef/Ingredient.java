@@ -24,7 +24,7 @@ public class Ingredient {
         return value;
     }
 
-    public float getContainingCalories() {
+    public float getCalories() {
         return product.getCalories() * value;
     }
 }

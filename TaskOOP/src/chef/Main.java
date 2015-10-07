@@ -45,5 +45,6 @@ public class Main {
         System.out.println(dish);
         System.out.println("Making...");
         dish.Make();
+        System.out.println("Salade colries: " + dish.getCalories());
     }
 }

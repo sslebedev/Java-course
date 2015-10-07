@@ -32,7 +32,7 @@ public class Dish {
         for (int i = 0, s = composition.size(); i < s; i++) {
             Ingredient ingredient = composition.get(i);
             strBuilder.append(ingredient.getValue()).append(" ").append(ingredient.getProduct().getMeasure().toString()).append(" of ").append(ingredient.getProduct().getName());
-            strBuilder.append(i < s - 1 ? ";" : ".");
+            strBuilder.append(i < s - 1 ? "; " : ".");
         }
 
         return strBuilder.toString();
@@ -44,5 +44,13 @@ public class Dish {
 
     public List<Ingredient> getComposition() {
         return composition;
+    }
+
+    public float getCalories() {
+        float sum = 0;
+        for (Ingredient ing : composition) {
+            sum += ing.getCalories();
+        }
+        return sum;
     }
 }
