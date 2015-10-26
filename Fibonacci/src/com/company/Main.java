@@ -29,10 +29,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        TestSuite suite = new TestSuite();
-        suite.addTestSuite(MainTest.class);
-        TestRunner.run(suite);
-
         System.out.println(TimeChecker.CalcAverageOperationTime(() -> FibDynamic(23), 50));
         System.out.println(TimeChecker.CalcAverageOperationTime(() -> FibFunctional(23), 50));
     }
