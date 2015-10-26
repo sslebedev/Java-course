@@ -1,2 +1,2 @@
 # Java-course
-SPbЫSTU Java lessons
+SPbSTU Java lessons
