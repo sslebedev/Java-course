@@ -1,10 +1,11 @@
 package com.company;
 
-import javafx.util.Callback;
+import junit.framework.TestSuite;
+import junit.textui.TestRunner;
 
 public class Main {
 
-    public static int Fib(int n) {
+    public static int FibDynamic(int n) {
         int[] prev = new int[]{0, 1};
 
         if (n < 2) {
@@ -19,20 +20,20 @@ public class Main {
         return prev[1];
     }
 
-    public static long CalcOperationTime(Runnable runnable) {
-        long start = System.nanoTime();
-        runnable.run();
-        long stop = System.nanoTime();
+    public static int FibFunctional(int n) {
+        if (n < 2) {
+            return n;
+        }
 
-        return stop - start;
+        return FibFunctional(n - 1) + FibFunctional((n - 2));
     }
 
     public static void main(String[] args) {
-        final int count = 10;
-        for (int i = 0; i < count; i++) {
-            final int p = i;
-            long nt = CalcOperationTime(() -> Fib(p));
-            System.out.println(nt);
-        }
+        TestSuite suite = new TestSuite();
+        suite.addTestSuite(MainTest.class);
+        TestRunner.run(suite);
+
+        System.out.println(TimeChecker.CalcAverageOperationTime(() -> FibDynamic(23), 50));
+        System.out.println(TimeChecker.CalcAverageOperationTime(() -> FibFunctional(23), 50));
     }
 }
