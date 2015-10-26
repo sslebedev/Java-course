@@ -1,2 +1,2 @@
 # Java-course
-SPbGPU Java lessons
+SPbЫSTU Java lessons
