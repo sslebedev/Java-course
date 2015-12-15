@@ -3,6 +3,9 @@ package com.sslebedev.chat;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Intent intent = new Intent(this, LoginActivity.class);
         startActivityForResult(intent, LOGIN_RESULT_CODE);
+        Button buttonSend = (Button) findViewById(R.id.buttonSend);
+        buttonSend.setOnClickListener(new OnButtonSendClickListener());
     }
 
     @Override
@@ -28,6 +33,15 @@ public class MainActivity extends AppCompatActivity {
                 Login = (String) data.getExtras().get("LOGIN");
                 setTitle(Login);
                 break;
+        }
+    }
+
+    protected class OnButtonSendClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            EditText editText = (EditText) findViewById(R.id.etMessage);
+            editText.setText("");
+            editText.clearFocus();
         }
     }
 }
