@@ -3,6 +3,8 @@ package com.sslebedev.chat;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -305,6 +307,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         private final String mEmail;
         private final String mPassword;
+        private Boolean isAbnormalTerminated = false;
 
         UserLoginTask(String email, String password) {
             mEmail = email;
@@ -314,33 +317,42 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected Boolean doInBackground(Void... params) {
             try {
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection connection = DriverManager.getConnection("jdbc:mysql//localhost/Chat", "root", "root");
+                Class.forName("com.mysql.jdbc.Driver").newInstance();
+                Connection connection = DriverManager.getConnection("jdbc:mysql://10.0.2.2:3306/chat", "root", "root");
                 Statement statement = connection.createStatement();
 
-                String querrySelectCurrent = "select * from Users where" +
+                String querySelectCurrent = "select * from Users where " +
                         "login='" + mEmail + "'" + " and " +
                         "password='" + mPassword + "'";
-                final ResultSet selectCurrent = statement.executeQuery(querrySelectCurrent);
+                final ResultSet selectCurrent = statement.executeQuery(querySelectCurrent);
                 Boolean isLoginSuccessful = selectCurrent.isBeforeFirst();
                 if (isLoginSuccessful) {
                     return true;
                 }
-                // TODO: register the new account here.
+                String querySelectUser = "select * from Users where " +
+                        "login='" + mEmail + "'";
+                final ResultSet selectUser = statement.executeQuery(querySelectUser);
+                Boolean isUserExists = selectUser.isBeforeFirst();
+                if (isUserExists) {
+                    return false;
+                }
+                String queryRegisterUser = "insert into Users values(0" +
+                        ", '" + mEmail + "'" +
+                        ", '" + mPassword + "')";
+                statement.executeUpdate(queryRegisterUser);
                 return true;
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (SQLException e) {
                 e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
             }
 
-            /*for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            } */
+            isAbnormalTerminated = true;
+
             return false;
         }
 
@@ -350,9 +362,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("LOGIN", mEmail);
+                setResult(RESULT_OK, resultIntent);
                 finish();
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
+                mPasswordView.setError(isAbnormalTerminated ? getString(R.string.error_abnormal_login) : getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
             }
         }

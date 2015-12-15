@@ -6,6 +6,53 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
-    <TextView android:text="Hello World!" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:weightSum="1"
+        android:id="@+id/linearLayout"
+        android:layout_gravity="bottom">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam est lorem, faucibus eu imperdiet in, ullamcorper eu lacus. Sed orci ligula, ultrices bibendum suscipit ac, varius eu sem. Quisque non consequat nisl. Pellentesque lacus neque, tempus quis enim sed, ullamcorper vestibulum purus. Mauris placerat sed massa eget porta. Suspendisse a viverra quam. Etiam placerat tempus finibus. Sed viverra egestas hendrerit. Sed fringilla tellus nibh, at mollis dolor accumsan at. Sed ac elit vitae velit dictum varius interdum nec enim. Aliquam ornare sem ex, vestibulum gravida eros semper vel. Maecenas urna lacus, egestas ac leo in, ullamcorper tristique eros. Donec tempus consequat neque, id auctor ante bibendum quis. Morbi dui velit, lacinia a mollis a, cursus non eros. Donec eu turpis eros. Aenean eget eros tincidunt diam maximus feugiat vel sed arcu."
+            android:id="@+id/textView"
+            android:layout_gravity="center"
+            android:focusable="true"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout2">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:id="@+id/editText"
+                android:layout_weight="1"
+                android:editable="true"
+                android:enabled="true"
+                android:inputType="text"
+                android:layout_gravity="bottom"
+                android:text="hideSoftInputFromWindow \n hideSoftInputFromWindow" />
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="@string/button_send"
+                android:id="@+id/button"
+                android:layout_gravity="bottom"
+                android:focusable="true" />
+        </LinearLayout>
+
+    </LinearLayout>
+
 </RelativeLayout>
